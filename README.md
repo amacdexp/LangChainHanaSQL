@@ -1,13 +1,14 @@
 # LangChainHanaSQL
 Example using LangChain OpenAI and Hana to convert text to SQL
 
-Related blogs here: 
+## Related blogs 
 
 [Data Wizardry – Unleashing Live Insights with OpenAI, LangChain & SAP HANA](https://blogs.sap.com/?p=1771733) 
 
 [Under the Hood – Text to SQL with LangChain, LLM's and Hana](https://blogs.sap.com/?p=1772464) 
 
 
+## Setup 
 The example requires a table to be created in a DB. e.g. Hana or Sqlite
 
 I create a custom table mimicing a subset of CDS View I_BillingDocumentItemCube is used:
