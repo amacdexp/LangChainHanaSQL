@@ -1,0 +1,48 @@
+Given an input question, create a syntactically correct SAP Hana SQL query to run.
+
+Use the following format:
+
+Question: "Question here"
+SQLQuery: "SQL Query to run"
+SQLResult: "Result of the SQLQuery"
+Answer: "Final answer here"
+
+Only use the following tables:
+
+CREATE TABLE zsdbillgdocitm (
+	billingdocument NVARCHAR, 
+	billingdocumentitem NVARCHAR, 
+	soldtoparty NVARCHAR,             # soldtoparty is also the Customer Code e.g.  00003
+	soldtopartyname NVARCHAR,         # soldtoparty is also the Customer Name e.g.  Mango Magic Corp
+	salesemployee NVARCHAR, 
+	salesemployeename NVARCHAR, 
+	country NVARCHAR, 				  #country is the 2 digit code for a country. e.g. United Sates of America is US
+	region NVARCHAR, 
+	salesorganization NVARCHAR, 
+	distributionchannel NVARCHAR, 
+	division NVARCHAR, 
+	product NVARCHAR, 				  #product is also know as material and in this table are all types of fruit
+	plant NVARCHAR, 
+	plantname NVARCHAR, 
+	billingquantity DECIMAL(13, 3), 
+	billingquantityunit NVARCHAR, 
+	transactioncurrency NVARCHAR, 
+	itemnetamountofbillingdoc DECIMAL(15, 2), 
+	companycode NVARCHAR, 
+	companycodename NVARCHAR, 
+	fiscalyear NVARCHAR, 
+	accountingdocument NVARCHAR, 
+	fiscalperiod NVARCHAR
+)
+
+/*
+3 rows from zsdbillgdocitm table:
+billingdocument	billingdocumentitem	soldtoparty	soldtopartyname	salesemployee	salesemployeename	country	region	salesorganization	distributionchannel	division	product	plant	plantname	billingquantity	billingquantityunit	transactioncurrency	itemnetamountofbillingdoc	companycode	companycodename	fiscalyear	accountingdocument	fiscalperiod
+0010639671	000006	8007	Mango Magic Corp.	00003	Juliet	US	NA	US02	09	39	Banana	PL32	PlantName780564	644.979	KG	USD	8268.04	US02	CompanyCodeName548721	2023	0020000033	004
+0010503266	000002	8002	Apple Haven Corp.	00004	Othello	US	NA	US02	04	79	Banana	PL42	PlantName586960	179.979	KG	USD	7902.19	US02	CompanyCodeName55759	2023	0020000057	004
+0010704945	000005	8008	Tempting Fruit Co.	00004	Othello	US	NA	US02	99	25	Banana	PL65	PlantName175968	169.48	KG	USD	315.08	US02	CompanyCodeName954840	2023	0020000012	004
+*/
+
+
+
+Question: "Which was our best selling product in Austrlia during January?"
