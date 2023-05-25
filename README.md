@@ -2,8 +2,8 @@
 Example using LangChain OpenAI and Hana to convert text to SQL
 
 Related blogs here:
-[Data Wizardry – Unleashing Live Insights with OpenAI, LangChain & SAP HANA](https://blogs.sap.com/?p=1771733)
-[Under the Hood – Text to SQL with LangChain, LLM's and Hana](https://blogs.sap.com/?p=1772464)
+[Data Wizardry – Unleashing Live Insights with OpenAI, LangChain & SAP HANA](https://blogs.sap.com/?p=1771733) 
+[Under the Hood – Text to SQL with LangChain, LLM's and Hana](https://blogs.sap.com/?p=1772464) 
 
 
 
