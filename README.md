@@ -16,6 +16,6 @@ I created a custom table mimicing a subset of the related S4 CDS View
 
 The following files contains the CREATE TABLE  and INSERT   to ppopulate some fictitious data.
 
-For sqlite setup SQL see (sqlite.sql) 
+For sqlite setup SQL see [sqlite.sql](sqlite.sql) 
 
-For Hana setup SQL see (hana.sql) 
+For Hana setup SQL see [hana.sql](hana.sql) 
