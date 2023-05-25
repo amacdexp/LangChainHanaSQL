@@ -11,9 +11,10 @@ Example using LangChain OpenAI and Hana to convert text to SQL
 ## Setup 
 The example requires a table to be created in a DB. e.g. Hana or Sqlite
 
-I create a custom table mimicing a subset of CDS View I_BillingDocumentItemCube is used:
+I created a custom table mimicing a subset of the related S4 CDS View 
 [I_BillingDocumentItemCube](https://help.sap.com/docs/SAP_S4HANA_CLOUD/0f69f8fb28ac4bf48d2b57b9637e81fa/ab6bdf55562d1d22e10000000a44147b.html) 
 
+The following files contains the CREATE TABLE  and INSERT   to ppopulate some fictitious data.
 
 For sqlite setup SQL see (sqlite.sql) 
 
