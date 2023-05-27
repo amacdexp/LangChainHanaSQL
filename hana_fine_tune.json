@@ -1,0 +1,210 @@
+[
+    {
+        "prompt": "Provide technical details of the billing data table.",
+        "completion": "The billing data table 'zsdbillgdocitm' contains the following columns:\n\n- billingdocument: NVARCHAR\n- billingdocumentitem: NVARCHAR\n- soldtoparty: NVARCHAR\n- soldtopartyname: NVARCHAR\n- salesemployee: NVARCHAR\n- salesemployeename: NVARCHAR\n- country: NVARCHAR\n- region: NVARCHAR\n- salesorganization: NVARCHAR\n- distributionchannel: NVARCHAR\n- division: NVARCHAR\n- product: NVARCHAR\n- plant: NVARCHAR\n- plantname: NVARCHAR\n- billingquantity: DECIMAL(13, 3)\n- billingquantityunit: NVARCHAR\n- transactioncurrency: NVARCHAR\n- itemnetamountofbillingdoc: DECIMAL(15, 2)\n- companycode: NVARCHAR\n- companycodename: NVARCHAR\n- fiscalyear: NVARCHAR\n- accountingdocument: NVARCHAR\n- fiscalperiod: NVARCHAR"
+    },
+    {
+        "prompt": "What is the field name and data type of the billing document in the billing table?",
+        "completion": "In the zsdbillgdocitm table, the field name is billingdocument and it has the data type NVARCHAR."
+    },
+    {
+        "prompt": "Tell me the field name and data type of the billing document item in the billing table.",
+        "completion": "The billing document item in the zsdbillgdocitm table is represented by the field name billingdocumentitem with the data type NVARCHAR."
+    },
+    {
+        "prompt": "From the billing table, what is the field name and data type of the customer code (soldtoparty)?",
+        "completion": "In the zsdbillgdocitm table, the field soldtoparty is used as the customer code. It is of type NVARCHAR."
+    },
+    {
+        "prompt": "Can you provide me the field name and data type of the customer name (soldtopartyname) in the billing table?",
+        "completion": "Certainly! In the zsdbillgdocitm table, the customer name field is represented by soldtopartyname and it is of type NVARCHAR."
+    },
+    {
+        "prompt": "From the billing table, what is the field name and data type of the sales employee?",
+        "completion": "The sales employee field in the zsdbillgdocitm table is denoted by the field name salesemployee with the data type NVARCHAR."
+    },
+    {
+        "prompt": "What is the field name and data type of the sales employee name in the billing table?",
+        "completion": "The field sales employee name in the zsdbillgdocitm table corresponds to the field name salesemployeename and it has the data type NVARCHAR."
+    },
+    {
+        "prompt": "Please provide the field name and data type of the country field in the billing table.",
+        "completion": "The country field in the zsdbillgdocitm table is represented by the field name country and it has the data type NVARCHAR."
+    },
+    {
+        "prompt": "Tell me the field name and data type of the region field in the billing table.",
+        "completion": "Certainly! The region field in the zsdbillgdocitm table is identified by the field name region and it has the data type NVARCHAR."
+    },
+    {
+        "prompt": "From the billing table, what is the field name and data type of the sales organization?",
+        "completion": "In the zsdbillgdocitm table, the field sales organization is denoted by the field name salesorganization with the data type NVARCHAR."
+    },
+    {
+        "prompt": "What is the field name and data type of the distribution channel in the billing table?",
+        "completion": "The field name for the distribution channel in the zsdbillgdocitm table is distributionchannel, and it has the data type NVARCHAR."
+    },
+    {
+        "prompt": "From the billing table, what is the field name and data type of the division?",
+        "completion": "In the zsdbillgdocitm table, the field division is represented by the field name division and it has the data type NVARCHAR."
+    },
+    {
+        "prompt": "What is the field name and data type of the product (material) in the billing table?",
+        "completion": "From the zsdbillgdocitm table, the field name for the product (material) is product, and it has the data type NVARCHAR."
+    },
+    {
+        "prompt": "Please provide the field name and data type of the plant field in the billing table.",
+        "completion": "Certainly! The field name for the plant in the zsdbillgdocitm table is plant, and it has the data type NVARCHAR."
+    },
+    {
+        "prompt": "From the billing table, what is the field name and data type of the plant name?",
+        "completion": "In the zsdbillgdocitm table, the field plant name is represented by the field name plantname with the data type NVARCHAR."
+    },
+    {
+        "prompt": "What is the total quantity and amount sold for each billing document in the billing data?",
+        "completion": "SELECT billingdocument, billingquantityunit, SUM(billingquantity) AS sum_billingquantity, transactioncurrency, SUM(itemnetamountofbillingdoc) AS sum_itemnetamountofbillingdoc FROM zsdbillgdocitm GROUP BY billingdocument, billingquantityunit, transactioncurrency"
+    },
+    {
+        "prompt": "Provide the total quantity and amount sold for each billing document item in the billing dataset.",
+        "completion": "SELECT billingdocumentitem, billingquantityunit, SUM(billingquantity) AS sum_billingquantity, transactioncurrency, SUM(itemnetamountofbillingdoc) AS sum_itemnetamountofbillingdoc FROM zsdbillgdocitm GROUP BY billingdocumentitem, billingquantityunit, transactioncurrency"
+    },
+    {
+        "prompt": "What is the total quantity and amount sold for each Sold-to party in the billing information?",
+        "completion": "SELECT soldtoparty, billingquantityunit, SUM(billingquantity) AS sum_billingquantity, transactioncurrency, SUM(itemnetamountofbillingdoc) AS sum_itemnetamountofbillingdoc FROM zsdbillgdocitm GROUP BY soldtoparty, billingquantityunit, transactioncurrency"
+    },
+    {
+        "prompt": "Provide the total quantity and amount sold for each Sold-to party name in the billing data.",
+        "completion": "SELECT soldtopartyname, billingquantityunit, SUM(billingquantity) AS sum_billingquantity, transactioncurrency, SUM(itemnetamountofbillingdoc) AS sum_itemnetamountofbillingdoc FROM zsdbillgdocitm GROUP BY soldtopartyname, billingquantityunit, transactioncurrency"
+    },
+    {
+        "prompt": "What is the total quantity and amount sold for each Sales employee in the billing dataset?",
+        "completion": "SELECT salesemployee, billingquantityunit, SUM(billingquantity) AS sum_billingquantity, transactioncurrency, SUM(itemnetamountofbillingdoc) AS sum_itemnetamountofbillingdoc FROM zsdbillgdocitm GROUP BY salesemployee, billingquantityunit, transactioncurrency"
+    },
+    {
+        "prompt": "Provide the total quantity and amount sold for each Sales employee name in the billing information.",
+        "completion": "SELECT salesemployeename, billingquantityunit, SUM(billingquantity) AS sum_billingquantity, transactioncurrency, SUM(itemnetamountofbillingdoc) AS sum_itemnetamountofbillingdoc FROM zsdbillgdocitm GROUP BY salesemployeename, billingquantityunit, transactioncurrency"
+    },
+    {
+        "prompt": "What is the total quantity and amount sold for each country in the billing data?",
+        "completion": "SELECT country, billingquantityunit, SUM(billingquantity) AS sum_billingquantity, transactioncurrency, SUM(itemnetamountofbillingdoc) AS sum_itemnetamountofbillingdoc FROM zsdbillgdocitm GROUP BY country, billingquantityunit, transactioncurrency"
+    },
+    {
+        "prompt": "Provide the total quantity and amount sold for each region in the billing dataset.",
+        "completion": "SELECT region, billingquantityunit, SUM(billingquantity) AS sum_billingquantity, transactioncurrency, SUM(itemnetamountofbillingdoc) AS sum_itemnetamountofbillingdoc FROM zsdbillgdocitm GROUP BY region, billingquantityunit, transactioncurrency"
+    },
+    {
+        "prompt": "What is the total quantity and amount sold for each sales organization in the billing information?",
+        "completion": "SELECT salesorganization, billingquantityunit, SUM(billingquantity) AS sum_billingquantity, transactioncurrency, SUM(itemnetamountofbillingdoc) AS sum_itemnetamountofbillingdoc FROM zsdbillgdocitm GROUP BY salesorganization, billingquantityunit, transactioncurrency"
+    },
+    {
+        "prompt": "Provide the total quantity and amount sold for each distribution channel in the billing data.",
+        "completion": "SELECT distributionchannel, billingquantityunit, SUM(billingquantity) AS sum_billingquantity, transactioncurrency, SUM(itemnetamountofbillingdoc) AS sum_itemnetamountofbillingdoc FROM zsdbillgdocitm GROUP BY distributionchannel, billingquantityunit, transactioncurrency"
+    },
+    {
+        "prompt": "What is the total quantity and amount sold for each division in the billing dataset?",
+        "completion": "SELECT division, billingquantityunit, SUM(billingquantity) AS sum_billingquantity, transactioncurrency, SUM(itemnetamountofbillingdoc) AS sum_itemnetamountofbillingdoc FROM zsdbillgdocitm GROUP BY division, billingquantityunit, transactioncurrency"
+    },
+    {
+        "prompt": "Provide the total quantity and amount sold for each product (material) in the billing information.",
+        "completion": "SELECT product, billingquantityunit, SUM(billingquantity) AS sum_billingquantity, transactioncurrency, SUM(itemnetamountofbillingdoc) AS sum_itemnetamountofbillingdoc FROM zsdbillgdocitm GROUP BY product, billingquantityunit, transactioncurrency"
+    },
+    {
+        "prompt": "What is the total quantity and amount sold for each plant in the billing data?",
+        "completion": "SELECT plant, billingquantityunit, SUM(billingquantity) AS sum_billingquantity, transactioncurrency, SUM(itemnetamountofbillingdoc) AS sum_itemnetamountofbillingdoc FROM zsdbillgdocitm GROUP BY plant, billingquantityunit, transactioncurrency"
+    },
+    {
+        "prompt": "Provide the total quantity and amount sold for each plant name in the billing dataset.",
+        "completion": "SELECT plantname, billingquantityunit, SUM(billingquantity) AS sum_billingquantity, transactioncurrency, SUM(itemnetamountofbillingdoc) AS sum_itemnetamountofbillingdoc FROM zsdbillgdocitm GROUP BY plantname, billingquantityunit, transactioncurrency"
+    },
+    {
+        "prompt": "What is the total quantity and amount sold for each company code in the billing information?",
+        "completion": "SELECT companycode, billingquantityunit, SUM(billingquantity) AS sum_billingquantity, transactioncurrency, SUM(itemnetamountofbillingdoc) AS sum_itemnetamountofbillingdoc FROM zsdbillgdocitm GROUP BY companycode, billingquantity, transactioncurrency"
+    },
+    {
+        "prompt": "Provide the total quantity and amount sold for each company code name in the billing data.",
+        "completion": "SELECT companycodename, billingquantityunit, SUM(billingquantity) AS sum_billingquantity, transactioncurrency, SUM(itemnetamountofbillingdoc) AS sum_itemnetamountofbillingdoc FROM zsdbillgdocitm GROUP BY companycodename, billingquantityunit, transactioncurrency"
+    },
+    {
+        "prompt": "What is the total quantity and amount sold for each fiscal year in the billing dataset?",
+        "completion": "SELECT fiscalyear, billingquantityunit, SUM(billingquantity) AS sum_billingquantity, transactioncurrency, SUM(itemnetamountofbillingdoc) AS sum_itemnetamountofbillingdoc FROM zsdbillgdocitm GROUP BY fiscalyear, billingquantityunit, transactioncurrency"
+    },
+    {
+        "prompt": "Provide the total quantity and amount sold for each accounting document in the billing information.",
+        "completion": "SELECT accountingdocument, billingquantityunit, SUM(billingquantity) AS sum_billingquantity, transactioncurrency, SUM(itemnetamountofbillingdoc) AS sum_itemnetamountofbillingdoc FROM zsdbillgdocitm GROUP BY accountingdocument, billingquantityunit, transactioncurrency"
+    },
+    {
+        "prompt": "What is the total quantity and amount sold for each fiscal period in the billing data?",
+        "completion": "SELECT fiscalperiod, billingquantityunit, SUM(billingquantity) AS sum_billingquantity, transactioncurrency, SUM(itemnetamountofbillingdoc) AS sum_itemnetamountofbillingdoc FROM zsdbillgdocitm GROUP BY fiscalperiod, billingquantityunit, transactioncurrency"
+    },
+    {
+        "prompt": "What is the total quantity sold by Billing document?",
+        "completion": "SELECT billingdocument, billingquantityunit, SUM(billingquantity) AS total_quantity_sold FROM zsdbillgdocitm GROUP BY billingdocument, billingquantity"
+    },
+    {
+        "prompt": "What is the total amount sold by Billing document item?",
+        "completion": "SELECT billingdocumentitem, transactioncurrency, SUM(itemnetamountofbillingdoc) AS total_amount_sold FROM zsdbillgdocitm GROUP BY billingdocumentitem, transactioncurrency"
+    },
+    {
+        "prompt": "What is the total quantity and amount sold by Sold-to party?",
+        "completion": "SELECT soldtoparty, billingquantityunit, transactioncurrency, SUM(billingquantity) AS total_quantity_sold, SUM(itemnetamountofbillingdoc) AS total_amount_sold FROM zsdbillgdocitm GROUP BY soldtoparty, billingquantityunit,transactioncurrency"
+    },
+    {
+        "prompt": "What is the total quantity sold by Sales employee?",
+        "completion": "SELECT salesemployee, billingquantityunit, SUM(billingquantity) AS total_quantity_sold FROM zsdbillgdocitm GROUP BY salesemployee, billingquantity"
+    },
+    {
+        "prompt": "What is the total amount sold by Sales employee name?",
+        "completion": "SELECT salesemployeename, transactioncurrency, SUM(itemnetamountofbillingdoc) AS total_amount_sold FROM zsdbillgdocitm GROUP BY salesemployeename, transactioncurrency"
+    },
+    {
+        "prompt": "What is the total quantity and amount sold by Country?",
+        "completion": "SELECT country, billingquantityunit,  SUM(billingquantity) AS total_quantity_sold,transactioncurrency, SUM(itemnetamountofbillingdoc) AS total_amount_sold FROM zsdbillgdocitm GROUP BY country, billingquantityunit, transactioncurrency"
+    },
+    {
+        "prompt": "What is the total quantity sold by Region?",
+        "completion": "SELECT region, billingquantityunit, SUM(billingquantity) AS total_quantity_sold FROM zsdbillgdocitm GROUP BY region, billingquantity"
+    },
+    {
+        "prompt": "What is the total amount sold by Sales organization?",
+        "completion": "SELECT salesorganization, transactioncurrency, SUM(itemnetamountofbillingdoc) AS total_amount_sold FROM zsdbillgdocitm GROUP BY salesorganization, transactioncurrency"
+    },
+    {
+        "prompt": "What is the total quantity and amount sold by Distribution channel?",
+        "completion": "SELECT distributionchannel,  billingquantityunit, SUM(billingquantity) AS total_quantity_sold, transactioncurrency, SUM(itemnetamountofbillingdoc) AS total_amount_sold FROM zsdbillgdocitm GROUP BY distributionchannel, billingquantityunit, transactioncurrency"
+    },
+    {
+        "prompt": "What is the total quantity sold by Division?",
+        "completion": "SELECT division, billingquantityunit, SUM(billingquantity) AS total_quantity_sold FROM zsdbillgdocitm GROUP BY division, billingquantity"
+    },
+    {
+        "prompt": "What is the total amount sold by Product?",
+        "completion": "SELECT product, transactioncurrency, SUM(itemnetamountofbillingdoc) AS total_amount_sold FROM zsdbillgdocitm GROUP BY product, transactioncurrency"
+    },
+    {
+        "prompt": "What is the total quantity and amount sold by Plant?",
+        "completion": "SELECT plant, billingquantityunit, transactioncurrency, SUM(billingquantity) AS total_quantity_sold, SUM(itemnetamountofbillingdoc) AS total_amount_sold FROM zsdbillgdocitm GROUP BY plant, billingquantity, transactioncurrency"
+    },
+    {
+        "prompt": "What is the total quantity sold by Plant name?",
+        "completion": "SELECT plantname, billingquantityunit, SUM(billingquantity) AS total_quantity_sold FROM zsdbillgdocitm GROUP BY plantname, billingquantity"
+    },
+    {
+        "prompt": "What is the total amount sold by Company code?",
+        "completion": "SELECT companycode, transactioncurrency, SUM(itemnetamountofbillingdoc) AS total_amount_sold FROM zsdbillgdocitm GROUP BY companycode, transactioncurrency"
+    },
+    {
+        "prompt": "What is the total quantity and amount sold by Company code name?",
+        "completion": "SELECT companycodename, billingquantity, transactioncurrency, SUM(billingquantity) AS total_quantity_sold, SUM(itemnetamountofbillingdoc) AS total_amount_sold FROM zsdbillgdocitm GROUP BY companycodename, billingquantity, transactioncurrency"
+    },
+    {
+        "prompt": "What is the total quantity sold by Fiscal year?",
+        "completion": "SELECT fiscalyear, billingquantity, SUM(billingquantity) AS total_quantity_sold FROM zsdbillgdocitm GROUP BY fiscalyear, billingquantity"
+    },
+    {
+        "prompt": "What is the total amount sold by Accounting document?",
+        "completion": "SELECT accountingdocument, transactioncurrency, SUM(itemnetamountofbillingdoc) AS total_amount_sold FROM zsdbillgdocitm GROUP BY accountingdocument, transactioncurrency"
+    },
+    {
+        "prompt": "What is the total quantity and amount sold by Fiscal period?",
+        "completion": "SELECT fiscalperiod, billingquantity, transactioncurrency, SUM(billingquantity) AS total_quantity_sold, SUM(itemnetamountofbillingdoc) AS total_amount_sold FROM zsdbillgdocitm GROUP BY fiscalperiod, billingquantity, transactioncurrency"
+    }
+]
