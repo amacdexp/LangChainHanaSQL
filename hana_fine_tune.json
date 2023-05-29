@@ -1,4 +1,5 @@
 [
+    
     {
         "prompt": "Provide technical details of the billing data table.",
         "completion": "The billing data table 'zsdbillgdocitm' contains the following columns:\n\n- billingdocument: NVARCHAR\n- billingdocumentitem: NVARCHAR\n- soldtoparty: NVARCHAR\n- soldtopartyname: NVARCHAR\n- salesemployee: NVARCHAR\n- salesemployeename: NVARCHAR\n- country: NVARCHAR\n- region: NVARCHAR\n- salesorganization: NVARCHAR\n- distributionchannel: NVARCHAR\n- division: NVARCHAR\n- product: NVARCHAR\n- plant: NVARCHAR\n- plantname: NVARCHAR\n- billingquantity: DECIMAL(13, 3)\n- billingquantityunit: NVARCHAR\n- transactioncurrency: NVARCHAR\n- itemnetamountofbillingdoc: DECIMAL(15, 2)\n- companycode: NVARCHAR\n- companycodename: NVARCHAR\n- fiscalyear: NVARCHAR\n- accountingdocument: NVARCHAR\n- fiscalperiod: NVARCHAR"
@@ -206,5 +207,153 @@
     {
         "prompt": "What is the total quantity and amount sold by Fiscal period?",
         "completion": "SELECT fiscalperiod, billingquantity, transactioncurrency, SUM(billingquantity) AS total_quantity_sold, SUM(itemnetamountofbillingdoc) AS total_amount_sold FROM zsdbillgdocitm GROUP BY fiscalperiod, billingquantity, transactioncurrency"
+    },
+        {
+        "prompt": "What is the total quantity and amount sold for each billing document in the billing data this year?",
+        "completion": "SELECT billingdocument, SUM(billingquantity), SUM(itemnetamountofbillingdoc) FROM zsdbillgdocitm WHERE fiscalyear = YEAR(CURRENT_DATE) GROUP BY billingdocument limit 10;"
+    },
+    {
+        "prompt": "Provide the total quantity and amount sold for each billing document item in the billing dataset for the United States.",
+        "completion": "SELECT billingdocumentitem, SUM(billingquantity), SUM(itemnetamountofbillingdoc) FROM zsdbillgdocitm WHERE country = 'US' GROUP BY billingdocumentitem limit 10;"
+    },
+    {
+        "prompt": "What is the total quantity and amount sold for each Sold-to party in the billing information in the first quarter?",
+        "completion": "SELECT soldtoparty, SUM(billingquantity), SUM(itemnetamountofbillingdoc) FROM zsdbillgdocitm WHERE fiscalperiod IN ('001', '002', '003') and fiscalyear = YEAR(CURRENT_DATE) GROUP BY soldtoparty limit 10;"
+    },
+    {
+        "prompt": "Provide the total quantity and amount sold for each Sold-to party name in the billing data for the European region.",
+        "completion": "SELECT soldtopartyname, SUM(billingquantity), SUM(itemnetamountofbillingdoc) FROM zsdbillgdocitm WHERE region = 'EU' GROUP BY soldtopartyname limit 10;"
+    },
+    {
+        "prompt": "What is the total quantity and amount sold for each Sales employee in the billing dataset for the current month?",
+        "completion": "SELECT salesemployee, SUM(billingquantity), SUM(itemnetamountofbillingdoc) FROM zsdbillgdocitm WHERE fiscalperiod = MONTH(CURRENT_DATE) and fiscalyear = YEAR(CURRENT_DATE) GROUP BY salesemployee limit 10;"
+    },
+    {
+        "prompt": "Provide the total quantity and amount sold for each Sales employee name in the billing information in 2023.",
+        "completion": "SELECT salesemployeename, SUM(billingquantity), SUM(itemnetamountofbillingdoc) FROM zsdbillgdocitm WHERE fiscalyear = '2023' GROUP BY salesemployeename limit 10;"
+    },
+    {
+        "prompt": "What is the total quantity and amount sold for each country in the billing data in the first half of the year?",
+        "completion": "SELECT country, SUM(billingquantity), SUM(itemnetamountofbillingdoc) FROM zsdbillgdocitm WHERE fiscalperiod <= '006' and fiscalyear = YEAR(CURRENT_DATE) GROUP BY country limit 10;"
+    },
+    {
+        "prompt": "Provide the total quantity and amount sold for each region in the billing dataset for the Asia-Pacific region.",
+        "completion": "SELECT region, SUM(billingquantity), SUM(itemnetamountofbillingdoc) FROM zsdbillgdocitm WHERE region = 'AP' GROUP BY region limit 10;"
+    },
+    {
+        "prompt": "What is the total quantity and amount sold for each sales organization in the billing information for the current fiscal year?",
+        "completion": "SELECT salesorganization, SUM(billingquantity), SUM(itemnetamountofbillingdoc) FROM zsdbillgdocitm WHERE fiscalyear = '2023' GROUP BY salesorganization limit 10;"
+    },
+    {
+        "prompt": "Provide the total quantity and amount sold for each distribution channel in the billing data for the 03 channel.",
+        "completion": "SELECT distributionchannel, SUM(billingquantity), SUM(itemnetamountofbillingdoc) FROM zsdbillgdocitm WHERE distributionchannel = '03' GROUP BY distributionchannel limit 10;"
+    },
+    {
+        "prompt": "What is the total quantity and amount sold for each division in the billing dataset for the North America region?",
+        "completion": "SELECT division, SUM(billingquantity), SUM(itemnetamountofbillingdoc) FROM zsdbillgdocitm WHERE region = 'NA' GROUP BY division limit 10;"
+    },
+    {
+        "prompt": "Provide the total quantity and amount sold for each product (material) in the billing information for the top-selling products Oranges and Apples.",
+        "completion": "SELECT product, SUM(billingquantity), SUM(itemnetamountofbillingdoc) FROM zsdbillgdocitm WHERE product IN ('Orange', 'Apple') GROUP BY product limit 10;"
+    },
+    {
+        "prompt": "What is the total quantity and amount sold for each plant in the billing data in the first quarter?",
+        "completion": "SELECT plant, SUM(billingquantity), SUM(itemnetamountofbillingdoc) FROM zsdbillgdocitm WHERE fiscalperiod <= '003' and fiscalyear = YEAR(CURRENT_DATE) GROUP BY plant limit 10;"
+    },
+    {
+        "prompt": "Provide the total quantity and amount sold for each plant name in the billing dataset for the 105 plants .",
+        "completion": "SELECT plantname, SUM(billingquantity), SUM(itemnetamountofbillingdoc) FROM zsdbillgdocitm WHERE plantname LIKE '%105%'  GROUP BY plantname limit 10;"
+    },
+    {
+        "prompt": "What is the total quantity and amount sold for each company code in the billing information in the current fiscal period?",
+        "completion": "SELECT companycode, SUM(billingquantity), SUM(itemnetamountofbillingdoc) FROM zsdbillgdocitm WHERE fiscalperiod = MONTH(CURRENT_DATE) and fiscalyear = YEAR(CURRENT_DATE) GROUP BY companycode limit 10;"
+    },
+    {
+        "prompt": "Provide the total quantity and amount sold for each company code name in the billing data for the United Kindom market.",
+        "completion": "SELECT companycodename, SUM(billingquantity), SUM(itemnetamountofbillingdoc) FROM zsdbillgdocitm WHERE country = 'UK' GROUP BY companycodename limit 10;"
+    },
+    {
+        "prompt": "What is the total quantity and amount sold for each fiscal year in the billing dataset for the past five years?",
+        "completion": "SELECT fiscalyear, SUM(billingquantity), SUM(itemnetamountofbillingdoc) FROM zsdbillgdocitm WHERE fiscalyear BETWEEN YEAR(CURRENT_DATE) - 5 AND YEAR(CURRENT_DATE) GROUP BY fiscalyear limit 10;"
+    },
+    {
+        "prompt": "Provide the total quantity and amount sold for each accounting document in the billing information for May.",
+        "completion": "SELECT accountingdocument, SUM(billingquantity), SUM(itemnetamountofbillingdoc) FROM zsdbillgdocitm WHERE fiscalperiod = '005' AND YEAR(CURRENT_DATE) GROUP BY accountingdocument limit 10;"
+    },
+    {
+        "prompt": "What is the total quantity and amount sold for each fiscal period in the billing data in the last quarter?",
+        "completion": "SELECT fiscalperiod, SUM(billingquantity), SUM(itemnetamountofbillingdoc) FROM zsdbillgdocitm WHERE     (\n        (MONTH(CURRENT_DATE) BETWEEN 1 AND 3 AND fiscalperiod BETWEEN '009' AND '012' AND fiscalyear = YEAR(CURRENT_DATE) - 1) -- January to March (Q4 Previous year)\n        OR\n        (MONTH(CURRENT_DATE) BETWEEN 4 AND 6 AND fiscalperiod BETWEEN '001' AND '003' AND fiscalyear = YEAR(CURRENT_DATE)) -- April to June (Q1)\n        OR\n        (MONTH(CURRENT_DATE) BETWEEN 7 AND 9 AND fiscalperiod BETWEEN '004' AND '006' AND fiscalyear = YEAR(CURRENT_DATE)) -- July to September (Q2)\n        OR\n        (MONTH(CURRENT_DATE) NOT BETWEEN 1 AND 9 AND fiscalperiod BETWEEN '007' AND '009' AND fiscalyear = YEAR(CURRENT_DATE)) -- October to December (Q3)\n    ) GROUP BY fiscalperiod limit 10;"
+    },
+    {
+        "prompt": "What is the total quantity sold by Billing document for 2023?",
+        "completion": "SELECT billingdocument, SUM(billingquantity) FROM zsdbillgdocitm WHERE fiscalyear = '2023' GROUP BY billingdocument limit 10;"
+    },
+    {
+        "prompt": "What is the total amount sold by Billing document item in the European region?",
+        "completion": "SELECT billingdocumentitem, SUM(itemnetamountofbillingdoc) FROM zsdbillgdocitm WHERE region = 'EU' GROUP BY billingdocumentitem limit 10;"
+    },
+    {
+        "prompt": "What is the total quantity and amount sold for each Sold-to party in the last quarter?",
+        "completion": "SELECT soldtoparty, SUM(billingquantity), SUM(itemnetamountofbillingdoc) FROM zsdbillgdocitm WHERE\n    (\n        (MONTH(CURRENT_DATE) BETWEEN 1 AND 3 AND fiscalperiod BETWEEN '009' AND '012' AND fiscalyear = YEAR(CURRENT_DATE) - 1) -- January to March (Q4 Previous year)\n        OR\n        (MONTH(CURRENT_DATE) BETWEEN 4 AND 6 AND fiscalperiod BETWEEN '001' AND '003' AND fiscalyear = YEAR(CURRENT_DATE)) -- April to June (Q1)\n        OR\n        (MONTH(CURRENT_DATE) BETWEEN 7 AND 9 AND fiscalperiod BETWEEN '004' AND '006' AND fiscalyear = YEAR(CURRENT_DATE)) -- July to September (Q2)\n        OR\n        (MONTH(CURRENT_DATE) NOT BETWEEN 1 AND 9 AND fiscalperiod BETWEEN '007' AND '009' AND fiscalyear = YEAR(CURRENT_DATE)) -- October to December (Q3)\n    )  GROUP BY soldtoparty limit 10;"
+    },
+    {
+        "prompt": "What is the total quantity sold by Sales employee for the current month in US Dollar transactions?",
+        "completion": "SELECT salesemployee, SUM(billingquantity) FROM zsdbillgdocitm WHERE fiscalperiod = MONTH(CURRENT_DATE) AND fiscalyear = YEAR(CURRENT_DATE) AND transactioncurrency = 'USD' GROUP BY salesemployee limit 10;"
+    },
+    {
+        "prompt": "What is the total amount sold by Sales employee name in 2022 where the transactions were in US Dollars?",
+        "completion": "SELECT salesemployeename, SUM(itemnetamountofbillingdoc) FROM zsdbillgdocitm WHERE fiscalyear = '2022' AND transactioncurrency = 'USD' GROUP BY salesemployeename limit 10;"
+    },
+    {
+        "prompt": "What is the total quantity and amount sold for each country in the second half of the year in USD?",
+        "completion": "SELECT country, SUM(billingquantity), SUM(itemnetamountofbillingdoc) FROM zsdbillgdocitm WHERE fiscalperiod >= '007' AND fiscalyear = YEAR(CURRENT_DATE) AND transactioncurrency = 'USD' GROUP BY country limit 10;"
+    },
+    {
+        "prompt": "What is the total quantity sold by region for the Asia-Pacific region in USD?",
+        "completion": "SELECT region, SUM(billingquantity) FROM zsdbillgdocitm WHERE region = 'AP' AND transactioncurrency = 'USD' GROUP BY region limit 10;"
+    },
+    {
+        "prompt": "What is the total amount sold by sales organization for the current fiscal year in USD?",
+        "completion": "SELECT salesorganization, SUM(itemnetamountofbillingdoc) FROM zsdbillgdocitm WHERE fiscalyear = YEAR(CURRENT_DATE) AND transactioncurrency = 'USD' GROUP BY salesorganization limit 10;"
+    },
+    {
+        "prompt": "What is the total quantity and amount sold for each distribution channel  in USD?",
+        "completion": "SELECT distributionchannel, SUM(billingquantity), SUM(itemnetamountofbillingdoc) FROM zsdbillgdocitm WHERE transactioncurrency = 'USD' GROUP BY distributionchannel limit 10;"
+    },
+    {
+        "prompt": "What is the total quantity sold by division for the North America region in USD?",
+        "completion": "SELECT division, SUM(billingquantity) FROM zsdbillgdocitm WHERE region = 'NA' AND transactioncurrency = 'USD' GROUP BY division limit 10;"
+    },
+    {
+        "prompt": "What is the total amount sold by product (material) for top 5 best selling products in USD?",
+        "completion": "SELECT product, SUM(itemnetamountofbillingdoc) as sum_itemnetamountofbillingdoc FROM zsdbillgdocitm WHERE transactioncurrency = 'USD' GROUP BY product ORDER BY sum_itemnetamountofbillingdoc DESC limit 5;"
+    },
+    {
+        "prompt": "What is the total quantity and amount sold for each plant in the first quarter in USD?",
+        "completion": "SELECT plant, SUM(billingquantity), SUM(itemnetamountofbillingdoc) FROM zsdbillgdocitm WHERE fiscalperiod <= '003' AND fiscalyear = YEAR(CURRENT_DATE) AND transactioncurrency = 'USD' GROUP BY plant limit 10;"
+    },
+    {
+        "prompt": "What is the total quantity sold by plant name for the 488 plants in USD?",
+        "completion": "SELECT plantname, SUM(billingquantity) FROM zsdbillgdocitm WHERE plantname LIKE '%488%' AND transactioncurrency = 'USD' GROUP BY plantname limit 10;"
+    },
+    {
+        "prompt": "What is the total amount sold by company code for the current fiscal period in USD?",
+        "completion": "SELECT companycode, SUM(itemnetamountofbillingdoc) FROM zsdbillgdocitm WHERE fiscalperiod = MONTH(CURRENT_DATE) AND fiscalyear = YEAR(CURRENT_DATE) AND transactioncurrency = 'USD' GROUP BY companycode limit 10;"
+    },
+    {
+        "prompt": "What is the total quantity and amount sold for each company code name in the European market in EUR?",
+        "completion": "SELECT companycodename, SUM(billingquantity), SUM(itemnetamountofbillingdoc) FROM zsdbillgdocitm WHERE region = 'EU' AND transactioncurrency = 'EUR' GROUP BY companycodename limit 10;"
+    },
+    {
+        "prompt": "What is the total quantity and amount sold for each fiscal year between 2018 and 2022 in USD?",
+        "completion": "SELECT fiscalyear, SUM(billingquantity), SUM(itemnetamountofbillingdoc) FROM zsdbillgdocitm WHERE fiscalyear BETWEEN '2018' AND '2022' AND transactioncurrency = 'USD' GROUP BY fiscalyear limit 10;"
+    },
+    {
+        "prompt": "What is the total quantity sold by accounting document for the current month in USD?",
+        "completion": "SELECT accountingdocument, SUM(billingquantity) FROM zsdbillgdocitm WHERE MONTH(CURRENT_DATE) AND fiscalyear = YEAR(CURRENT_DATE)  AND transactioncurrency = 'USD' GROUP BY accountingdocument limit 10;"
+    },
+    {
+        "prompt": "What is the total quantity and amount sold for each fiscal period in the last quarter in USD?",
+        "completion": "SELECT fiscalperiod, SUM(billingquantity), SUM(itemnetamountofbillingdoc) FROM zsdbillgdocitm WHERE     (\n        (MONTH(CURRENT_DATE) BETWEEN 1 AND 3 AND fiscalperiod BETWEEN '009' AND '012' AND fiscalyear = YEAR(CURRENT_DATE) - 1) -- January to March (Q4 Previous year)\n        OR\n        (MONTH(CURRENT_DATE) BETWEEN 4 AND 6 AND fiscalperiod BETWEEN '001' AND '003' AND fiscalyear = YEAR(CURRENT_DATE)) -- April to June (Q1)\n        OR\n        (MONTH(CURRENT_DATE) BETWEEN 7 AND 9 AND fiscalperiod BETWEEN '004' AND '006' AND fiscalyear = YEAR(CURRENT_DATE)) -- July to September (Q2)\n        OR\n        (MONTH(CURRENT_DATE) NOT BETWEEN 1 AND 9 AND fiscalperiod BETWEEN '007' AND '009' AND fiscalyear = YEAR(CURRENT_DATE)) -- October to December (Q3)\n    ) AND transactioncurrency = 'USD' GROUP BY fiscalperiod limit 10;"
     }
 ]
